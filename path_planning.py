@@ -13,15 +13,15 @@ g=9.81        # m/s^2
 V_max=188/3.6 # m/s
 U_max=5*g     # m/s^2
 delta_t=0.1   # sec
-t_max=60    # sec
-t_steps=int((t_max+delta_t)/delta_t) 	 # [-]
+t_max=9+delta_t   # sec
+t_steps=int(round(t_max/delta_t,1)) 	 # [-]
 D_sides=32   				 # [-]
 gamma=20*math.pi/180    	 # deg
 alpha=20*math.pi/180		 # deg
 
-waypoints =10*np.array([[0,  2, 4,  2, 0, -2,-4, -2,0],
-                     [0, -2, 0,  2, 0, -2, 0,  2,0],
-                     [1,1.5, 2,1.5, 1,1.5, 2,1.5,1]])
+waypoints =10*np.array([[0.41, 2.245, 2.899, 2.49, 2.236, 2.36, gate_6az, gate_6az, 1.625, gate_7z, gate_7z-0.5, 0.41],
+                     [14.642, 10.51, 4.057, 2.749, 6.083, 12.259, gate_6a_ycenter, gate_6b_ycenter, 9.0, gate_7y, gate_7y+1, 14.642],
+                     [8.913, 9.27, 9.27, 5.76, 2.675, 2.787, gate_6ax, gate_6ax, 2.91, 5.91, 8, 8.913]])
 
 waypoints=waypoints.astype(int)
 n_waypoints=waypoints.shape[1]
@@ -45,24 +45,17 @@ vz = {}
 uz = {}
 
 'Acceleration'
-Un={}
-er={}
+U={}
 'Commodity variables for discretization'
 theta={}
 # ----------------------------------------------------------------------------
-# Create Objective Function
+# Create Objective FUction
 # ----------------------------------------------------------------------------)
 for d in range(D_sides):
     theta[d]=2*math.pi*(d+1)/D_sides
 
-# for j in range(9):
-#     for i in range(3):
-#         er[j,i]= m.addVar(obj=1,
-#                         vtype=GRB.CONTINUOUS,
-#                         name="E_%s_%s" % (j,i))
-
 for n in range(t_steps):
-    Un[n]= m.addVar(obj=1,
+    U[n]= m.addVar(obj=1,
                     vtype=GRB.CONTINUOUS,
                     name="U_%s" % (n))
 
@@ -157,12 +150,15 @@ for n in range(1,t_steps):
             vz[n-1]+delta_t*uz[n-1],
             GRB.EQUAL,vz[n], name='Vz_cts_%s_%s' % (n,d))
 
+
 'Waypoint Constraint'
 tolerance = 0.0
-t_waypoints =np.linspace(0,t_max,9)
+t_waypoints =np.linspace(0,t_max-delta_t,9)
+print(t_waypoints)
 my_list=list(range(waypoints.shape[1]))
 for i in my_list:
     j=int(t_waypoints[i]/delta_t)
+    print(j)
     m.addConstr(
         px[j],
         GRB.EQUAL, waypoints[0,i])
@@ -175,22 +171,13 @@ for i in my_list:
         pz[j],
         GRB.EQUAL, waypoints[2,i])
 
-    # m.addConstr(
-    #     px[j],
-    #     GRB.GREATER_EQUAL, waypoints[0, i] - er[j])
-    # m.addConstr(
-    #     py[j],
-    #     GRB.GREATER_EQUAL, waypoints[1, i] - er[j])
-    # m.addConstr(
-    #     pz[j],
-    #     GRB.GREATER_EQUAL, waypoints[2, i] - er[j])
 # ---------------------------------------------------
 # -------------------------
 # Optimize the Problem
 # ----------------------------------------------------------------------------
 # Collects the values of the variables "A_%_%_%_%_%_%" and "P_%_%_%_%_%_%" in
 # a multi-dimensional array called results_A and results_P respectively.
-# Note that every aircraft type has the same amount of instances (i.e. the total
+# Note that every aircraft type has the same amoUt of instances (i.e. the total
 # number of aircraft).
 
 m.update()
@@ -205,7 +192,7 @@ m.write("Path_trajectory.sol")
 status = m.status
 print(status)
 if status == GRB.Status.UNBOUNDED:
-    print('The model cannot be solved because it is unbounded')
+    print('The model cannot be solved because it is Unbounded')
 
 elif status == GRB.Status.OPTIMAL:
     f_objective= m.objVal
@@ -219,10 +206,13 @@ elif status == GRB.Status.OPTIMAL:
         print(px[n].X,py[n].X,pz[n].X)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(pos_x, pos_y, pos_z, zdir='z', s=20, c=None, depthshade=True)
-    ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True)
+    ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory')
+    ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
+    plt.legend()
+    title_str='Trajectory achieved in '+str(t_max)+' seconds'
+    plt.title(title_str)
     plt.show()
 
-elif status != GRB.Status.INF_OR_UNBD and status != GRB.Status.INFEASIBLE:
+elif status != GRB.Status.INF_OR_UBD and status != GRB.Status.INFEASIBLE:
     print('Optimization was stopped with status %d' % status)
     exit(0)

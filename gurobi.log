@@ -5087,3 +5087,1106 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
 Solved with barrier
 Solved in 1798 iterations and 1.03 seconds
 Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:18:31
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 156095 rows, 6010 columns and 516215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 2405 rows and 113415 columns
+Presolve time: 0.34s
+Presolved: 3605 rows, 42680 columns, 121934 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Dense cols : 24
+ Free vars  : 1824
+ AA' NZ     : 1.260e+04
+ Factor NZ  : 6.019e+04 (roughly 20 MBytes of memory)
+ Factor Ops : 1.057e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -3.60406297e+05 -0.00000000e+00  2.12e+00 9.19e+03  3.72e+00     0s
+   1  -5.09158421e+05 -0.00000000e+00  5.65e-01 1.66e+02  1.23e+01     0s
+   2  -8.81154727e+02 -0.00000000e+00  4.08e-04 1.23e-05  2.16e-02     0s
+   3  -8.80620233e-01 -0.00000000e+00  7.12e-12 2.47e-08  2.16e-05     0s
+   4  -8.80620234e-04 -0.00000000e+00  6.61e-17 2.78e-11  2.16e-08     0s
+   5  -1.75839026e-09 -0.00000000e+00  7.01e-17 1.50e-09  4.30e-14     0s
+
+Barrier solved model in 5 iterations and 0.43 seconds
+Optimal objective -1.75839026e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 1.2992274e-11                 1s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 1s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 1.2992274e-11      1s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+    1798    0.0000000e+00   0.000000e+00   0.000000e+00      1s
+
+Solved with barrier
+Solved in 1798 iterations and 1.04 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:18:43
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 156095 rows, 6010 columns and 516215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 2405 rows and 113415 columns
+Presolve time: 0.36s
+Presolved: 3605 rows, 42680 columns, 121934 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Dense cols : 24
+ Free vars  : 1824
+ AA' NZ     : 1.260e+04
+ Factor NZ  : 6.019e+04 (roughly 20 MBytes of memory)
+ Factor Ops : 1.057e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -3.60406297e+05 -0.00000000e+00  2.12e+00 9.19e+03  3.72e+00     0s
+   1  -5.09158421e+05 -0.00000000e+00  5.65e-01 1.66e+02  1.23e+01     0s
+   2  -8.81154727e+02 -0.00000000e+00  4.08e-04 1.23e-05  2.16e-02     0s
+   3  -8.80620233e-01 -0.00000000e+00  7.12e-12 2.47e-08  2.16e-05     0s
+   4  -8.80620234e-04 -0.00000000e+00  6.61e-17 2.78e-11  2.16e-08     0s
+   5  -1.75839026e-09 -0.00000000e+00  7.01e-17 1.50e-09  4.30e-14     0s
+
+Barrier solved model in 5 iterations and 0.45 seconds
+Optimal objective -1.75839026e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 1.2992274e-11                 1s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 1s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 1.2992274e-11      1s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+    1798    0.0000000e+00   0.000000e+00   0.000000e+00      1s
+
+Solved with barrier
+Solved in 1798 iterations and 1.10 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:19:52
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 156095 rows, 6010 columns and 516215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 2405 rows and 113415 columns
+Presolve time: 0.35s
+Presolved: 3605 rows, 42680 columns, 121934 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Dense cols : 24
+ Free vars  : 1824
+ AA' NZ     : 1.260e+04
+ Factor NZ  : 6.019e+04 (roughly 20 MBytes of memory)
+ Factor Ops : 1.057e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -3.60406297e+05 -0.00000000e+00  2.12e+00 9.19e+03  3.72e+00     0s
+   1  -5.09158421e+05 -0.00000000e+00  5.65e-01 1.66e+02  1.23e+01     0s
+   2  -8.81154727e+02 -0.00000000e+00  4.08e-04 1.23e-05  2.16e-02     0s
+   3  -8.80620233e-01 -0.00000000e+00  7.12e-12 2.47e-08  2.16e-05     0s
+   4  -8.80620234e-04 -0.00000000e+00  6.61e-17 2.78e-11  2.16e-08     0s
+   5  -1.75839026e-09 -0.00000000e+00  7.01e-17 1.50e-09  4.30e-14     0s
+
+Barrier solved model in 5 iterations and 0.45 seconds
+Optimal objective -1.75839026e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 1.2992274e-11                 1s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 1s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 1.2992274e-11      1s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+    1798    0.0000000e+00   0.000000e+00   0.000000e+00      1s
+
+Solved with barrier
+Solved in 1798 iterations and 1.12 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:20:28
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:21:53
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:22:26
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 52095 rows, 2010 columns and 172215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 805 rows and 37815 columns
+Presolve time: 0.11s
+Presolved: 1205 rows, 14280 columns, 40734 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 624
+ AA' NZ     : 3.065e+04
+ Factor NZ  : 7.076e+04 (roughly 7 MBytes of memory)
+ Factor Ops : 5.000e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -1.20515630e+05 -0.00000000e+00  2.12e+00 3.09e+03  3.73e+00     0s
+   1  -4.20769838e+05 -0.00000000e+00  2.17e-01 8.71e+01  3.02e+01     0s
+   2  -5.26652345e+02 -0.00000000e+00  5.14e-05 4.66e-05  3.86e-02     0s
+   3  -5.26594091e-01 -0.00000000e+00  2.31e-13 5.80e-08  3.86e-05     0s
+   4  -5.26594092e-04 -0.00000000e+00  1.60e-16 5.84e-11  3.86e-08     0s
+   5  -5.77316617e-09 -0.00000000e+00  7.12e-18 8.53e-14  4.23e-13     0s
+
+Barrier solved model in 5 iterations and 0.15 seconds
+Optimal objective -5.77316617e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 5.2164661e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 5.2164661e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     598    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 598 iterations and 0.26 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:22:56
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:23:35
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:24:00
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:25:59
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:26:27
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.18 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:26:54
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.17 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:29:55
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.16 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:32:13
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.18 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:33:33
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:34:07
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:34:32
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:35:13
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:36:25
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:36:49
+
+Academic license - for non-commercial use only
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:37:11
+
+Academic license - for non-commercial use only
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:37:24
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 26095 rows, 1010 columns and 86215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 405 rows and 18915 columns
+Presolve time: 0.06s
+Presolved: 605 rows, 7180 columns, 20434 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 324
+ AA' NZ     : 7.864e+03
+ Factor NZ  : 1.843e+04 (roughly 3 MBytes of memory)
+ Factor Ops : 6.618e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -6.05429633e+04 -0.00000000e+00  2.12e+00 1.63e+03  3.75e+00     0s
+   1  -2.04276077e+05 -0.00000000e+00  4.16e-01 1.43e+02  2.80e+01     0s
+   2  -1.19977381e+03 -0.00000000e+00  7.30e-04 9.58e-02  1.75e-01     0s
+   3  -1.19919761e+00 -0.00000000e+00  6.81e-11 2.97e-07  1.75e-04     0s
+   4  -1.19919762e-03 -0.00000000e+00  4.82e-16 3.04e-10  1.75e-07     0s
+   5  -3.16701142e-08 -0.00000000e+00  7.12e-19 3.04e-13  4.62e-12     0s
+   6  -8.36368061e-13 -0.00000000e+00  8.04e-21 5.68e-14  1.22e-16     0s
+
+Barrier solved model in 6 iterations and 0.07 seconds
+Optimal objective -8.36368061e-13
+
+Crossover log...
+
+       0 DPushes remaining with DInf 2.8085867e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.8085867e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     284    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 284 iterations and 0.13 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:37:42
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.10 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.19 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:38:13
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.18 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:38:58
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.19 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:39:04
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.18 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:39:20
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 33895 rows, 1310 columns and 112015 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 525 rows and 24585 columns
+Presolve time: 0.07s
+Presolved: 785 rows, 9310 columns, 26524 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 414
+ AA' NZ     : 1.313e+04
+ Factor NZ  : 3.066e+04 (roughly 4 MBytes of memory)
+ Factor Ops : 1.418e+06 (less than 1 second per iteration)
+ Threads    : 3
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -7.85347633e+04 -0.00000000e+00  2.12e+00 2.03e+03  3.74e+00     0s
+   1  -2.83223655e+05 -0.00000000e+00  1.67e-01 5.38e+01  3.13e+01     0s
+   2  -5.84720402e+02 -0.00000000e+00  1.75e-04 1.09e-03  6.57e-02     0s
+   3  -5.84537493e-01 -0.00000000e+00  6.33e-13 1.11e-07  6.57e-05     0s
+   4  -5.84537494e-04 -0.00000000e+00  1.75e-16 1.12e-10  6.57e-08     0s
+   5  -5.45829282e-09 -0.00000000e+00  3.35e-18 1.14e-13  6.14e-13     0s
+
+Barrier solved model in 5 iterations and 0.09 seconds
+Optimal objective -5.45829282e-09
+
+Crossover log...
+
+       0 DPushes remaining with DInf 3.8439252e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.8439252e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     382    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 382 iterations and 0.17 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:39:34
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 26095 rows, 1010 columns and 86215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 405 rows and 18915 columns
+Presolve time: 0.05s
+Presolved: 605 rows, 7180 columns, 20434 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 324
+ AA' NZ     : 7.864e+03
+ Factor NZ  : 1.843e+04 (roughly 3 MBytes of memory)
+ Factor Ops : 6.618e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -6.05429633e+04 -0.00000000e+00  2.12e+00 1.63e+03  3.75e+00     0s
+   1  -2.04276077e+05 -0.00000000e+00  4.16e-01 1.43e+02  2.80e+01     0s
+   2  -1.19977381e+03 -0.00000000e+00  7.30e-04 9.58e-02  1.75e-01     0s
+   3  -1.19919761e+00 -0.00000000e+00  6.81e-11 2.97e-07  1.75e-04     0s
+   4  -1.19919762e-03 -0.00000000e+00  4.82e-16 3.04e-10  1.75e-07     0s
+   5  -3.16701142e-08 -0.00000000e+00  7.12e-19 3.04e-13  4.62e-12     0s
+   6  -8.36368061e-13 -0.00000000e+00  8.04e-21 5.68e-14  1.22e-16     0s
+
+Barrier solved model in 6 iterations and 0.07 seconds
+Optimal objective -8.36368061e-13
+
+Crossover log...
+
+       0 DPushes remaining with DInf 2.8085867e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.8085867e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     284    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 284 iterations and 0.13 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:39:54
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 2695 rows, 110 columns and 8815 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+Presolve removed 39 rows and 28 columns
+Presolve time: 0.00s
+
+Solved in 0 iterations and 0.00 seconds
+Infeasible model
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:40:03
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 13095 rows, 510 columns and 43215 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 205 rows and 9465 columns
+Presolve time: 0.05s
+Presolved: 305 rows, 3630 columns, 10284 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 174
+ AA' NZ     : 2.086e+03
+ Factor NZ  : 5.349e+03 (roughly 2 MBytes of memory)
+ Factor Ops : 1.071e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -3.05566300e+04 -0.00000000e+00  2.12e+00 8.14e+02  3.78e+00     0s
+   1  -4.53007474e+04 -0.00000000e+00  1.28e+00 5.93e+02  6.72e+00     0s
+   2  -1.54852558e+04 -0.00000000e+00  7.90e-01 5.27e+02  3.14e+00     0s
+   3  -4.52764703e+03 -0.00000000e+00  6.55e-01 5.04e+02  2.42e+00     0s
+   4   3.99804559e+03 -0.00000000e+00  6.24e-01 4.92e+02  2.30e+00     0s
+   5   2.60182286e+04 -0.00000000e+00  6.04e-01 4.90e+02  2.34e+00     0s
+
+Barrier performed 5 iterations in 0.06 seconds
+Barrier solve interrupted - model solved by another algorithm
+
+
+Solved with dual simplex
+Solved in 184 iterations and 0.06 seconds
+Infeasible model
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:40:10
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 23495 rows, 910 columns and 77615 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 365 rows and 17025 columns
+Presolve time: 0.05s
+Presolved: 545 rows, 6470 columns, 18404 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 294
+ AA' NZ     : 6.406e+03
+ Factor NZ  : 1.511e+04 (roughly 3 MBytes of memory)
+ Factor Ops : 4.899e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -5.45456967e+04 -0.00000000e+00  2.12e+00 1.42e+03  3.75e+00     0s
+   1  -1.87709886e+05 -0.00000000e+00  4.20e-01 1.51e+02  2.82e+01     0s
+   2  -1.53361945e+03 -0.00000000e+00  7.97e-04 5.95e-05  2.48e-01     0s
+   3  -2.19527338e+00 -0.00000000e+00  3.44e-07 5.05e-07  3.55e-04     0s
+   4  -2.19508592e-03 -0.00000000e+00  4.00e-13 7.31e-10  3.55e-07     0s
+   5  -3.08252153e-08 -0.00000000e+00  7.63e-18 7.35e-13  4.99e-12     0s
+   6  -4.32871098e-13 -0.00000000e+00  3.32e-20 8.53e-14  7.01e-17     0s
+
+Barrier solved model in 6 iterations and 0.06 seconds
+Optimal objective -4.32871098e-13
+
+Crossover log...
+
+       0 DPushes remaining with DInf 2.1997959e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.1997959e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     254    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 254 iterations and 0.11 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:41:05
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 23495 rows, 910 columns and 77615 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 365 rows and 17025 columns
+Presolve time: 0.05s
+Presolved: 545 rows, 6470 columns, 18404 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 294
+ AA' NZ     : 6.406e+03
+ Factor NZ  : 1.511e+04 (roughly 3 MBytes of memory)
+ Factor Ops : 4.899e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -5.45456967e+04 -0.00000000e+00  2.12e+00 1.42e+03  3.75e+00     0s
+   1  -1.87709886e+05 -0.00000000e+00  4.20e-01 1.51e+02  2.82e+01     0s
+   2  -1.53361945e+03 -0.00000000e+00  7.97e-04 5.95e-05  2.48e-01     0s
+   3  -2.19527338e+00 -0.00000000e+00  3.44e-07 5.05e-07  3.55e-04     0s
+   4  -2.19508592e-03 -0.00000000e+00  4.00e-13 7.31e-10  3.55e-07     0s
+   5  -3.08252153e-08 -0.00000000e+00  7.63e-18 7.35e-13  4.99e-12     0s
+   6  -4.32871098e-13 -0.00000000e+00  3.32e-20 8.53e-14  7.01e-17     0s
+
+Barrier solved model in 6 iterations and 0.06 seconds
+Optimal objective -4.32871098e-13
+
+Crossover log...
+
+       0 DPushes remaining with DInf 2.1997959e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.1997959e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     254    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 254 iterations and 0.11 seconds
+Optimal objective  0.000000000e+00
+
+Gurobi 8.1.0 (win64, Python) logging started 02/18/19 19:41:42
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Optimize a model with 23495 rows, 910 columns and 77615 nonzeros
+Coefficient statistics:
+  Matrix range     [5e-03, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+01, 5e+01]
+
+Concurrent LP optimizer: dual simplex and barrier
+Showing barrier log only...
+
+Presolve removed 365 rows and 17025 columns
+Presolve time: 0.04s
+Presolved: 545 rows, 6470 columns, 18404 nonzeros
+
+Ordering time: 0.00s
+
+Barrier statistics:
+ Free vars  : 294
+ AA' NZ     : 6.406e+03
+ Factor NZ  : 1.511e+04 (roughly 3 MBytes of memory)
+ Factor Ops : 4.899e+05 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -5.45456967e+04 -0.00000000e+00  2.12e+00 1.42e+03  3.75e+00     0s
+   1  -1.87709886e+05 -0.00000000e+00  4.20e-01 1.51e+02  2.82e+01     0s
+   2  -1.53361945e+03 -0.00000000e+00  7.97e-04 5.95e-05  2.48e-01     0s
+   3  -2.19527338e+00 -0.00000000e+00  3.44e-07 5.05e-07  3.55e-04     0s
+   4  -2.19508592e-03 -0.00000000e+00  4.00e-13 7.31e-10  3.55e-07     0s
+   5  -3.08252153e-08 -0.00000000e+00  7.63e-18 7.35e-13  4.99e-12     0s
+   6  -4.32871098e-13 -0.00000000e+00  3.32e-20 8.53e-14  7.01e-17     0s
+
+Barrier solved model in 6 iterations and 0.06 seconds
+Optimal objective -4.32871098e-13
+
+Crossover log...
+
+       0 DPushes remaining with DInf 2.1997959e-12                 0s
+
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.1997959e-12      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     254    0.0000000e+00   0.000000e+00   0.000000e+00      0s
+
+Solved with barrier
+Solved in 254 iterations and 0.11 seconds
+Optimal objective  0.000000000e+00
