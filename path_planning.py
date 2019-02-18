@@ -13,15 +13,15 @@ g=9.81        # m/s^2
 V_max=188/3.6 # m/s
 U_max=5*g     # m/s^2
 delta_t=0.1   # sec
-t_max=9+delta_t   # sec
+t_max=16+delta_t   # sec
 t_steps=int(round(t_max/delta_t,1)) 	 # [-]
 D_sides=32   				 # [-]
 gamma=20*math.pi/180    	 # deg
 alpha=20*math.pi/180		 # deg
 
-waypoints =10*np.array([[0.41, 2.245, 2.899, 2.49, 2.236, 2.36, gate_6az, gate_6az, 1.625, gate_7z, gate_7z-0.5, 0.41],
-                     [14.642, 10.51, 4.057, 2.749, 6.083, 12.259, gate_6a_ycenter, gate_6b_ycenter, 9.0, gate_7y, gate_7y+1, 14.642],
-                     [8.913, 9.27, 9.27, 5.76, 2.675, 2.787, gate_6ax, gate_6ax, 2.91, 5.91, 8, 8.913]])
+waypoints =10*np.array([[8.913, 9.27, 9.27, 5.76, 2.675, 2.787, 6.4045, 6.4045, 2.91, 5.91, 8, 8.913], # x axis
+                        [14.642, 10.51, 4.057, 2.749, 6.083, 12.259, 12.5825, 11.8575, 9.0,7.2685, 7.2685+1, 14.642],  #y-axis
+                        [0.41, 2.245, 2.899, 2.49, 2.236, 2.36, 1.098, 1.098, 1.625, 2.1565, 2.1565 - 0.5, 0.41]]) # z-axis
 
 waypoints=waypoints.astype(int)
 n_waypoints=waypoints.shape[1]
@@ -153,9 +153,10 @@ for n in range(1,t_steps):
 
 'Waypoint Constraint'
 tolerance = 0.0
-t_waypoints =np.linspace(0,t_max-delta_t,9)
+n_gates=waypoints.shape[1]
+t_waypoints =np.linspace(0,t_max-delta_t,n_gates)
 print(t_waypoints)
-my_list=list(range(waypoints.shape[1]))
+my_list=list(range(n_gates))
 for i in my_list:
     j=int(t_waypoints[i]/delta_t)
     print(j)
@@ -203,7 +204,7 @@ elif status == GRB.Status.OPTIMAL:
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
         pos_z.append(pz[n].X)
-        print(px[n].X,py[n].X,pz[n].X)
+        print(U[n].X)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory')
