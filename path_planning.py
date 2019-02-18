@@ -13,7 +13,7 @@ g=9.81        # m/s^2
 V_max=188/3.6 # m/s
 U_max=5*g     # m/s^2
 delta_t=0.1   # sec
-t_max=16+delta_t   # sec
+t_max=160+delta_t   # sec
 t_steps=int(round(t_max/delta_t,1)) 	 # [-]
 D_sides=32   				 # [-]
 gamma=20*math.pi/180    	 # deg
@@ -94,6 +94,11 @@ m.setObjective(m.getObjective(), GRB.MINIMIZE)  # The objective is to maximize r
 # ----------------------------------------------------------------------------
 # Create Constraints
 # ----------------------------------------------------------------------------
+
+'Max acceleration constraint'
+for n in range(t_steps):
+    m.addConstr(U[n],
+        GRB.LESS_EQUAL, U_max*delta_t, name='U_ctsmax1_%s' % (n))
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):
