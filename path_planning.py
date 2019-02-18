@@ -56,7 +56,7 @@ for d in range(D_sides):
 
 for n in range(t_steps):
     U[n]= m.addVar(obj=1,
-                    vtype=GRB.CONTINUOUS,
+                    vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                     name="U_%s" % (n))
 
     ux[n] = m.addVar(obj=0,
@@ -99,15 +99,15 @@ for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
             math.cos(theta[d])*math.sin(-alpha)*ux[n]+math.sin(theta[d])*math.sin(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
-            GRB.LESS_EQUAL,U_max, name='U_cts1_%s_%s' % (n,d))
+            GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
 
     m.addConstr(
         math.cos(theta[d]) * math.sin(alpha) * uz[n] + math.sin(theta[d]) * math.sin(alpha) * ux[n] + math.sin(alpha) * uz[n],
-        GRB.LESS_EQUAL, U_max, name='U_cts2_%s_%s' % (n, d))
+        GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
     m.addConstr(
         math.cos(theta[d])*uy[n]+math.sin(theta[d])*uz[n],
-        GRB.LESS_EQUAL,U_max, name='U_cts3_%s_%s' % (n,d))
+        GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
 
 'Velocity Constraint'
 for n in range(t_steps):
