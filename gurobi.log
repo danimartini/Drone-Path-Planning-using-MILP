@@ -21547,3 +21547,156 @@ H 9108  3259                       6.0358573    3.73571  38.1%  21.1   31s
  186768 39877    5.47746   94   15    5.97562    5.18437  13.2%  21.1  400s
  188513 40160    5.68010  117   16    5.97562    5.19038  13.1%  21.1  405s
  191635 40476    5.53000   93   11    5.97562    5.20027  13.0%  21.1  410s
+
+Gurobi 8.1.0 (win64, Python) logging started 02/24/19 22:33:32
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Warning: linear constraint 22812 and linear constraint 22813 have the same name "Mwp_1"
+Optimize a model with 22841 rows, 1123 columns and 68828 nonzeros
+Model has 20 quadratic constraints
+Variable types: 511 continuous, 612 integer (612 binary)
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+07]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [4e-01, 1e+07]
+Presolve removed 10815 rows and 132 columns
+Presolve time: 0.42s
+Presolved: 14557 rows, 1828 columns, 73307 nonzeros
+Variable types: 1330 continuous, 498 integer (498 binary)
+
+Root relaxation: objective 4.158000e+00, 764 iterations, 0.14 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    4.15800    0   23          -    4.15800      -     -    1s
+     0     0    4.55400    0   24          -    4.55400      -     -    2s
+     0     0    4.55400    0   24          -    4.55400      -     -    2s
+     0     0    4.55400    0   27          -    4.55400      -     -    2s
+     0     0    4.55400    0   24          -    4.55400      -     -    2s
+     0     0    4.55400    0   20          -    4.55400      -     -    3s
+     0     0    4.55400    0   22          -    4.55400      -     -    3s
+     0     0    4.55400    0   23          -    4.55400      -     -    3s
+     0     0    4.55400    0   24          -    4.55400      -     -    3s
+     0     0    4.55400    0   20          -    4.55400      -     -    4s
+     0     0    4.55400    0   21          -    4.55400      -     -    4s
+     0     0    4.55400    0   21          -    4.55400      -     -    4s
+     0     0    4.55400    0   20          -    4.55400      -     -    5s
+     0     0    4.55400    0   20          -    4.55400      -     -    5s
+     0     0    4.55400    0   20          -    4.55400      -     -    5s
+     0     0    4.55400    0   20          -    4.55400      -     -    5s
+     0     2    4.55400    0   20          -    4.55400      -     -    7s
+   482   256   10.20239   22   18          -    4.75200      -  11.8   10s
+  1177   771    9.84560  115  165          -    4.75200      -  12.4   18s
+  1179   772    8.95425   22   23          -    4.77920      -  12.4   21s
+  1184   776   10.27084  109   30          -    4.79511      -  12.4   26s
+  1218   788    4.95000   22   25          -    4.95000      -  19.8   30s
+  1505   958    5.34600   40   20          -    5.34600      -  28.5   35s
+* 1528   916             107      14.8889481    5.34600  64.1%  30.4   35s
+H 1551   862                      13.6906617    5.34600  61.0%  30.7   36s
+H 1614   789                      13.1210133    5.34600  59.3%  34.5   37s
+* 1654   623              32      12.4744204    5.34600  57.1%  35.6   37s
+  1779   645    5.34600   52   21   12.47442    5.34600  57.1%  38.7   40s
+  2166   777    9.16895   72   17   12.47442    6.07341  51.3%  46.2   45s
+H 2349   779                      12.3104380    6.07827  50.6%  46.2   46s
+* 2362   736             113      12.0561571    6.07827  49.6%  46.4   46s
+* 2364   697             112      11.9956599    6.07827  49.3%  46.4   46s
+H 2526   687                      11.8359213    6.07827  48.6%  46.7   49s
+H 2554   665                      11.7596245    6.07827  48.3%  46.6   49s
+  2555   674    7.12800   89   20   11.75962    6.07827  48.3%  46.6   50s
+H 2984   788                      11.4851495    6.07827  47.1%  47.3   54s
+  3035   816    8.29235  105   23   11.48515    6.07827  47.1%  47.5   55s
+  3581  1103    9.93755  135   14   11.48515    6.39368  44.3%  49.1   60s
+  4067  1315    7.52872   77   20   11.48515    6.74888  41.2%  50.2   65s
+
+Gurobi 8.1.0 (win64, Python) logging started 02/24/19 22:34:42
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Warning: linear constraint 22812 and linear constraint 22813 have the same name "Mwp_1"
+Optimize a model with 22841 rows, 1123 columns and 68828 nonzeros
+Variable types: 511 continuous, 612 integer (612 binary)
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+07]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [4e-01, 1e+07]
+Presolve removed 10702 rows and 183 columns
+Presolve time: 0.36s
+Presolved: 12139 rows, 940 columns, 65993 nonzeros
+Variable types: 493 continuous, 447 integer (447 binary)
+
+Root relaxation: objective 3.762000e+00, 614 iterations, 0.06 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    3.76200    0   23          -    3.76200      -     -    0s
+     0     0    3.76655    0   30          -    3.76655      -     -    0s
+     0     0    3.76679    0   29          -    3.76679      -     -    0s
+     0     0    3.78311    0   31          -    3.78311      -     -    1s
+     0     0    3.78311    0   30          -    3.78311      -     -    1s
+     0     0    3.78604    0   29          -    3.78604      -     -    1s
+     0     0    3.78604    0   29          -    3.78604      -     -    1s
+     0     0    3.78604    0   31          -    3.78604      -     -    1s
+     0     0    3.78604    0   34          -    3.78604      -     -    1s
+     0     0    3.78604    0   28          -    3.78604      -     -    1s
+     0     0    3.78604    0   27          -    3.78604      -     -    1s
+     0     0    3.78604    0   27          -    3.78604      -     -    2s
+     0     0    3.78604    0   30          -    3.78604      -     -    2s
+     0     0    3.78604    0   27          -    3.78604      -     -    2s
+     0     0    3.78604    0   33          -    3.78604      -     -    2s
+     0     0    3.78604    0   26          -    3.78604      -     -    2s
+     0     0    3.78604    0   28          -    3.78604      -     -    2s
+     0     0    3.78604    0   27          -    3.78604      -     -    3s
+     0     0    3.78604    0   27          -    3.78604      -     -    3s
+     0     2    3.78604    0   26          -    3.78604      -     -    4s
+    89    72    4.05049   26   22          -    3.96000      -  25.0    5s
+* 1059   481              31      10.6713085    5.21271  51.2%  43.9    8s
+  1355   570 infeasible   31        10.67131    5.36974  49.7%  42.4   10s
+* 1788   656              32      10.5831234    5.44952  48.5%  41.8   11s
+H 1845   694                      10.2218510    5.45201  46.7%  42.0   11s
+  2085   800    5.55251   16   27   10.22185    5.45201  46.7%  41.9   19s
+  2089   803    7.77384   37   28   10.22185    5.45201  46.7%  41.9   20s
+  2168   826    5.45201   22   21   10.22185    5.45201  46.7%  44.0   25s
+  2675   923    6.30121   34   17   10.22185    5.45201  46.7%  47.4   30s
+  3310  1148    8.55993  133   16   10.22185    5.45201  46.7%  45.5   35s
+  3777  1255    7.27944   62   16   10.22185    5.45201  46.7%  48.3   41s
+  4141  1306    8.96921   92   14   10.22185    5.45201  46.7%  52.2   45s
+  5048  1544    8.17735   53   12   10.22185    5.83545  42.9%  53.4   50s
+H 5213  1616                      10.1239372    5.84733  42.2%  53.5   53s
+  5474  1712    9.02466   53   12   10.12394    5.93243  41.4%  53.7   55s
+  6429  2112    8.63669   62   10   10.12394    6.14908  39.3%  53.9   60s
+  7472  2599     cutoff   59        10.12394    6.25379  38.2%  53.7   65s
+  8602  3065     cutoff   63        10.12394    6.38211  37.0%  52.8   71s
+  9487  3456    9.45084   72   12   10.12394    6.44268  36.4%  52.4   76s
+  9929  3586    9.94115   69    8   10.12394    6.55613  35.2%  52.9   80s
+ 10287  3749    9.00266   55   12   10.12394    6.58479  35.0%  52.7   86s
+ 11055  4088     cutoff   81        10.12394    6.67093  34.1%  52.3   91s
+ 11905  4514     cutoff   47        10.12394    6.72916  33.5%  51.8   95s
+
+Gurobi 8.1.0 (win64, Python) logging started 02/24/19 22:36:31
+
+Academic license - for non-commercial use only
+Warning for adding constraints: zero or small (< 1e-13) coefficients, ignored
+Warning: linear constraint 2517 and linear constraint 2518 have the same name "Mwp_1"
+Optimize a model with 2546 rows, 133 columns and 7493 nonzeros
+Variable types: 61 continuous, 72 integer (72 binary)
+Coefficient statistics:
+  Matrix range     [2e-02, 1e+07]
+  Objective range  [1e-02, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [4e-01, 1e+07]
+Presolve removed 1379 rows and 42 columns
+Presolve time: 0.02s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -

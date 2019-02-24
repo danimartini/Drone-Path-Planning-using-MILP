@@ -198,7 +198,7 @@ for n in [0,t_steps-1]:
             GRB.EQUAL, 0,name='uz_%s'%(n))
 
 
-'Velocity constaint at waypoint'
+'Velocity constraint at waypoint'
 for i in range(n_gates):
     if velocity_cts[0,i]<math.inf:
         m.addConstr(vx[n],

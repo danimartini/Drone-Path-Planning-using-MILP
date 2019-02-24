@@ -12,10 +12,10 @@ from write_to_text import *
 'Drone dynamics data'
 g=9.81        # m/s^2
 V_max=118/3.6 # m/s
-D_sides=8     # [-]
+D_sides=32     # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
-delta_t=0.2   # sec
+delta_t=0.1   # sec
 t_max=10.    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
@@ -55,7 +55,7 @@ U={}
 'Commodity variables for discretization'
 theta={}
 b={}
-ratio=0.5
+ratio=0.99
 # ----------------------------------------------------------------------------
 # Create Objective FUction
 # ----------------------------------------------------------------------------)
@@ -63,7 +63,7 @@ for d in range(D_sides):
     theta[d]=2*math.pi*(d+1)/D_sides
 
 for n in range(t_steps):
-    U[n]= m.addVar(obj=0.01,
+    U[n]= m.addVar(obj=1-ratio,
                     vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                     name="U_%s" % (n))
     ux[n] = m.addVar(obj=0,
@@ -123,11 +123,11 @@ for n in range(t_steps):
 for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
-            math.cos(theta[d])*math.sin(-alpha)*ux[n]+math.sin(theta[d])*math.sin(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
+            math.cos(theta[d])*math.cos(-alpha)*ux[n]+math.sin(theta[d])*math.cos(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.sin(alpha) * uz[n] + math.sin(theta[d]) * math.sin(alpha) * ux[n] + math.sin(alpha) * uz[n],
+            math.cos(theta[d]) * math.cos(alpha) * uz[n] + math.sin(theta[d]) * math.cos(alpha) * ux[n] + math.sin(alpha) * uz[n],
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -138,11 +138,11 @@ for n in range(t_steps):
 for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
-            math.cos(theta[d])*math.sin(gamma)*vx[n]+math.sin(theta[d])*math.sin(gamma)*vy[n]+math.sin(-gamma)*vz[n],
+            math.cos(theta[d])*math.cos(gamma)*vx[n]+math.sin(theta[d])*math.cos(gamma)*vy[n]+math.sin(-gamma)*vz[n],
             GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.sin(gamma) * vz[n] + math.sin(theta[d]) * math.sin(gamma) * vx[n] + math.sin(gamma) * vz[n],
+            math.cos(theta[d]) * math.cos(gamma) * vz[n] + math.sin(theta[d]) * math.cos(gamma) * vx[n] + math.sin(gamma) * vz[n],
             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -236,7 +236,7 @@ for n in [0,t_steps-1]:
             ux[n],
             GRB.EQUAL, 0,name='ux_%s'%(n))
     m.addConstr(
-            ux[n],
+            uy[n],
             GRB.EQUAL, 0,name='uy_%s'%(n))
     m.addConstr(
             uz[n],
@@ -244,16 +244,17 @@ for n in [0,t_steps-1]:
 
 
 'Velocity constaint at waypoint'
-for i in range(n_gates):
-    if velocity_cts[0,i]<math.inf:
-        m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
-                GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
-    if velocity_cts[1,i]<math.inf:
-        m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
-            GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
-    if velocity_cts[2,i]<math.inf:
-        m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
-            GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
+# for i in range(n_gates):
+#     if velocity_cts[0,i]<math.inf:
+#         m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
+#                 GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
+#     if velocity_cts[1,i]<math.inf:
+#         m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
+#             GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
+#     if velocity_cts[2,i]<math.inf:
+#         m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
+#             GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
+
 # ---------------------------------------------------
 # -------------------------
 # Optimize the Problem
