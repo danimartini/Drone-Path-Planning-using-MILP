@@ -123,7 +123,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*uy[n]+math.sin(theta[d])*uz[n],
+            math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
 
 'Max Velocity Constraint'
@@ -138,7 +138,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*vy[n]+math.sin(theta[d])*vz[n],
+            math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 
 'Integration scheme Constraint'
