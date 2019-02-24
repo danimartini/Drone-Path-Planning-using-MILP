@@ -15,8 +15,8 @@ V_max=118/3.6 # m/s
 D_sides=32     # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
-delta_t=0.1   # sec
-t_max=10.    # sec
+delta_t=1   # sec
+t_max=40.    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
 alpha=10*math.pi/180		 # deg
@@ -242,18 +242,28 @@ for n in [0,t_steps-1]:
             uz[n],
             GRB.EQUAL, 0,name='uz_%s'%(n))
 
+    m.addConstr(
+        vx[n],
+        GRB.EQUAL, 0, name='vx_%s' % (n))
+    m.addConstr(
+        vy[n],
+        GRB.EQUAL, 0, name='vy_%s' % (n))
+    m.addConstr(
+        vz[n],
+        GRB.EQUAL, 0, name='vz_%s' % (n))
+
 
 'Velocity constaint at waypoint'
-# for i in range(n_gates):
-#     if velocity_cts[0,i]<math.inf:
-#         m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
-#                 GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
-#     if velocity_cts[1,i]<math.inf:
-#         m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
-#             GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
-#     if velocity_cts[2,i]<math.inf:
-#         m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
-#             GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
+for i in range(n_gates):
+    if velocity_cts[0,i]<math.inf:
+        m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
+                GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
+    if velocity_cts[1,i]<math.inf:
+        m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
+            GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
+    if velocity_cts[2,i]<math.inf:
+        m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
+            GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
 
 # ---------------------------------------------------
 # -------------------------
