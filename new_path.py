@@ -1,3 +1,5 @@
+# Author: Daniel Martini Jimenez
+# Date: 24-2-2019
 from gurobipy import *
 import math
 import numpy as np
@@ -12,12 +14,11 @@ from write_to_text import *
 'Drone dynamics data'
 g=9.81        # m/s^2
 V_max=118/3.6 # m/s
-D_sides=8     # [-]
-V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
-delta_t=0.2   # sec
-t_max=10.    # sec
+delta_t=0.05   # sec
+t_max=25    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
+D_sides=32   				 # [-]
 gamma=10*math.pi/180    	 # deg
 alpha=10*math.pi/180		 # deg
 
@@ -30,6 +31,8 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
                        [ 0, math.inf,   0,     0, 0, 0, 0, 0, math.inf, 0, math.inf, 0]])
 
 # waypoints=waypoints.astype(int)
+t_wps=[0,2,5,6.5,9,13,15,15.5,17.5,19.5,20.5,25.0]
+
 n_waypoints=waypoints.shape[1]
 # ----------------------------------------------------------------------------
 # Define Variables to be used.
@@ -55,7 +58,6 @@ U={}
 'Commodity variables for discretization'
 theta={}
 b={}
-ratio=0.5
 # ----------------------------------------------------------------------------
 # Create Objective FUction
 # ----------------------------------------------------------------------------)
@@ -63,7 +65,7 @@ for d in range(D_sides):
     theta[d]=2*math.pi*(d+1)/D_sides
 
 for n in range(t_steps):
-    U[n]= m.addVar(obj=0.01,
+    U[n]= m.addVar(obj=1,
                     vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                     name="U_%s" % (n))
     ux[n] = m.addVar(obj=0,
@@ -95,16 +97,6 @@ for n in range(t_steps):
                       name="Pz_%s" % (n))
 
 n_gates=waypoints.shape[1]
-for i in range(n_gates):
-    for n in range(t_steps):
-        b[i,n] = m.addVar(obj=0,
-                         vtype=GRB.BINARY,
-                         name="b_%s_%s" % (i,n))
-
-
-Tf = m.addVar(obj=ratio,
-             vtype=GRB.CONTINUOUS,lb=0.0,
-             name="Tsim")
 m.update()
 
 # Optimize
@@ -177,58 +169,21 @@ for n in range(1,t_steps):
 
 
 'Waypoint Constraint'
-m.addConstr(
-    px[0],
-    GRB.EQUAL, waypoints[0,0],name='Wpx')
-
-m.addConstr(
-    py[0],
-    GRB.EQUAL, waypoints[1,0],name='Wpy')
-m.addConstr(
-    pz[0],
-    GRB.EQUAL, waypoints[2,0],name='Wpz')
-
-
-M=10e6
-for n in range(t_steps):
-    for i in range(1,n_gates):
-        m.addConstr(
-            px[n]-waypoints[0,i],
-            GRB.LESS_EQUAL, M*(1-b[i,n]),name='Wpx_%s_%s' % (i,n))
-
-        m.addConstr(
-            px[n] - waypoints[0, i],
-            GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpox_%s_%s' % (i,n))
-
-        m.addConstr(
-            py[n] - waypoints[1, i],
-            GRB.LESS_EQUAL, M * (1 - b[i, n]), name='Wpy_%s_%s' % (i,n))
-
-        m.addConstr(
-            py[n] - waypoints[1, i],
-            GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpoy_%s_%s' % (i,n))
-
-        m.addConstr(
-            pz[n] - waypoints[2, i],
-            GRB.LESS_EQUAL, M * (1 - b[i, n]), name='Wpz_%s_%s' % (i,n))
-
-        m.addConstr(
-            pz[n] - waypoints[2, i],
-            GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpoz_%s_%s' % (i,n))
-
-'Set meet of waypoint requirement'
-for i in range(1,n_gates):
+for i in range(n_gates):
+    n=int(t_wps[i]/delta_t)
+    print(n)
     m.addConstr(
-        quicksum(b[i,n] for n in range(t_steps)),
-        GRB.EQUAL, 1,name='Mwp_%s' % (i))
-#
-    m.addConstr(
-        quicksum(delta_t*n*b[i,n] for n in range(t_steps)),
-        GRB.GREATER_EQUAL, quicksum(delta_t*n*b[i-1,n] for n in range(t_steps)), name='Mwp_%s' % (i))
+        px[n]-waypoints[0,i],
+        GRB.EQUAL, 0,name='Wpx_%s_%s' % (i,n))
 
-m.addConstr(
-        quicksum(delta_t*n*b[n_gates-1,n] for n in range(t_steps)),
-        GRB.LESS_EQUAL, Tf, name='Maxt_%s' % (n_gates-1))
+    m.addConstr(
+        py[n] - waypoints[1, i],
+        GRB.EQUAL, 0, name='Wpoy_%s_%s' % (i,n))
+
+    m.addConstr(
+        pz[n] - waypoints[2, i],
+        GRB.EQUAL, 0, name='Wpz_%s_%s' % (i,n))
+
 
 'Initial acceleration Constraint'
 for n in [0,t_steps-1]:
@@ -246,13 +201,13 @@ for n in [0,t_steps-1]:
 'Velocity constaint at waypoint'
 for i in range(n_gates):
     if velocity_cts[0,i]<math.inf:
-        m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
+        m.addConstr(vx[n],
                 GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
     if velocity_cts[1,i]<math.inf:
-        m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
+        m.addConstr(vy[n],
             GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
     if velocity_cts[2,i]<math.inf:
-        m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
+        m.addConstr(vz[n],
             GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
 # ---------------------------------------------------
 # -------------------------
@@ -286,11 +241,6 @@ elif status == GRB.Status.OPTIMAL:
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
         pos_z.append(pz[n].X)
-        for i in range(n_gates):
-            if b[i,n].X == 1:
-                print('Waypoint %s at time %s'%(i,n*delta_t))
-    tot_time= sum(n*delta_t*b[n_gates-1,n].X for n in range(t_steps))
-    print(tot_time)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory')
@@ -299,7 +249,8 @@ elif status == GRB.Status.OPTIMAL:
     title_str='Trajectory achieved in '+str(t_max)+' seconds'
     plt.title(title_str)
     plt.show()
-    write_text(px, py, pz,tot_time)
+    file_name="new_coord.txt"
+    write_text(px, py, pz,t_max,file_name)
     print('Optmization time is ', m.Runtime)
 
 elif status != GRB.Status.INF_OR_UBD and status != GRB.Status.INFEASIBLE:
