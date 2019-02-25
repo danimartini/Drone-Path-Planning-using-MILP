@@ -15,7 +15,7 @@ V_max=118/3.6 # m/s
 D_sides=8     # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
-delta_t=0.5   # sec
+delta_t=2   # sec
 t_max=60    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
@@ -131,7 +131,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*uz[n]+math.sin(theta[d])*uy[n],
+            math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
 
 'Max Velocity Constraint'
