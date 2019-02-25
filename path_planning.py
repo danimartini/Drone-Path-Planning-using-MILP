@@ -12,11 +12,11 @@ from write_to_text import *
 'Drone dynamics data'
 g=9.81        # m/s^2
 V_max=118/3.6 # m/s
-D_sides=32     # [-]
+D_sides=8     # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
-delta_t=1   # sec
-t_max=40.    # sec
+delta_t=0.5   # sec
+t_max=60    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
 alpha=10*math.pi/180		 # deg
@@ -55,7 +55,7 @@ U={}
 'Commodity variables for discretization'
 theta={}
 b={}
-ratio=0.99
+ratio=0.
 # ----------------------------------------------------------------------------
 # Create Objective FUction
 # ----------------------------------------------------------------------------)
@@ -131,7 +131,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*uy[n]+math.sin(theta[d])*uz[n],
+            math.cos(theta[d])*uz[n]+math.sin(theta[d])*uy[n],
             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
 
 'Max Velocity Constraint'
@@ -146,7 +146,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*vy[n]+math.sin(theta[d])*vz[n],
+            math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 
 'Integration scheme Constraint'
@@ -188,7 +188,9 @@ m.addConstr(
     pz[0],
     GRB.EQUAL, waypoints[2,0],name='Wpz')
 
-
+# m.addConstr(b[0,0],
+#         GRB.EQUAL, 1,name='Mwp_%s' % (i))
+#
 M=10e6
 for n in range(t_steps):
     for i in range(1,n_gates):
@@ -242,28 +244,58 @@ for n in [0,t_steps-1]:
             uz[n],
             GRB.EQUAL, 0,name='uz_%s'%(n))
 
-    m.addConstr(
-        vx[n],
-        GRB.EQUAL, 0, name='vx_%s' % (n))
-    m.addConstr(
-        vy[n],
-        GRB.EQUAL, 0, name='vy_%s' % (n))
-    m.addConstr(
-        vz[n],
-        GRB.EQUAL, 0, name='vz_%s' % (n))
+    # m.addConstr(
+    #     vx[n],
+    #     GRB.EQUAL, 0, name='vx_%s' % (n))
+    # m.addConstr(
+    #     vy[n],
+    #     GRB.EQUAL, 0, name='vy_%s' % (n))
+    # m.addConstr(
+    #     vz[n],
+    #     GRB.EQUAL, 0, name='vz_%s' % (n))
 
 
 'Velocity constaint at waypoint'
-for i in range(n_gates):
-    if velocity_cts[0,i]<math.inf:
-        m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
-                GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
-    if velocity_cts[1,i]<math.inf:
-        m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
-            GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
-    if velocity_cts[2,i]<math.inf:
-        m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
-            GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
+for n in range(t_steps):
+    for i in range(n_gates):
+        if velocity_cts[0,i]<math.inf:
+            # m.addConstr(quicksum(vx[n]*b[i,n] for n in range(t_steps)),
+            #         GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
+            m.addConstr(
+                vx[n] - velocity_cts[0,i],
+                GRB.LESS_EQUAL, M * (1 - b[i, n]), name='Wpx_%s_%s' % (i, n))
+
+            m.addConstr(
+                vx[n] - velocity_cts[0,i],
+                GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpox_%s_%s' % (i, n))
+        if velocity_cts[1,i]<math.inf:
+            # m.addConstr(quicksum(vy[n]*b[i,n] for n in range(t_steps)),
+            #     GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
+            m.addConstr(
+                vy[n] - velocity_cts[1, i],
+                GRB.LESS_EQUAL, M * (1 - b[i, n]), name='Wpx_%s_%s' % (i, n))
+
+            m.addConstr(
+                vy[n] - velocity_cts[1, i],
+                GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpox_%s_%s' % (i, n))
+        if velocity_cts[2,i]<math.inf:
+            # m.addConstr(quicksum(vz[n]*b[i,n] for n in range(t_steps)),
+            #     GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
+            m.addConstr(
+                vz[n] - velocity_cts[2, i],
+                GRB.LESS_EQUAL, M * (1 - b[i, n]), name='Wpx_%s_%s' % (i, n))
+
+            m.addConstr(
+                vz[n] - velocity_cts[2, i],
+                GRB.GREATER_EQUAL, -M * (1 - b[i, n]), name='Wpox_%s_%s' % (i, n))
+
+    m.addConstr(
+        uz[n]-0,
+        GRB.LESS_EQUAL, M * (1 - b[n_gates-1, n]), name='Wpx_%s_%s' % (i, n))
+
+    m.addConstr(
+        uz[n] - 0,
+        GRB.GREATER_EQUAL, -M * (1 - b[n_gates-1, n]), name='Wpox_%s_%s' % (i, n))
 
 # ---------------------------------------------------
 # -------------------------
@@ -297,6 +329,7 @@ elif status == GRB.Status.OPTIMAL:
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
         pos_z.append(pz[n].X)
+        # print(vx[n].X,vy[n].X,vz[n].X)
         for i in range(n_gates):
             if b[i,n].X == 1:
                 print('Waypoint %s at time %s'%(i,n*delta_t))
