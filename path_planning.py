@@ -15,6 +15,7 @@ V_max=118/3.6 # m/s
 D_sides=8     # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
+U_max *= math.cos(math.pi/D_sides)
 delta_t=2   # sec
 t_max=60    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
@@ -59,8 +60,8 @@ ratio=0.
 # ----------------------------------------------------------------------------
 # Create Objective FUction
 # ----------------------------------------------------------------------------)
-for d in range(D_sides):
-    theta[d]=2*math.pi*(d+1)/D_sides
+for d in range(D_sides+1):
+    theta[d]=2*math.pi*(d)/D_sides
 
 for n in range(t_steps):
     U[n]= m.addVar(obj=1-ratio,
@@ -127,7 +128,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.cos(alpha) * uz[n] + math.sin(theta[d]) * math.cos(alpha) * ux[n] + math.sin(alpha) * uz[n],
+            math.cos(theta[d]) * math.cos(alpha)*ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -325,6 +326,7 @@ elif status == GRB.Status.OPTIMAL:
     pos_x = []
     pos_y = []
     pos_z = []
+    t_waypoints=[0]
     for n in range(t_steps):
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
@@ -333,6 +335,7 @@ elif status == GRB.Status.OPTIMAL:
         for i in range(n_gates):
             if b[i,n].X == 1:
                 print('Waypoint %s at time %s'%(i,n*delta_t))
+                t_waypoints.append(n*delta_t)
     tot_time= sum(n*delta_t*b[n_gates-1,n].X for n in range(t_steps))
     print(tot_time)
     fig = plt.figure()
@@ -342,8 +345,8 @@ elif status == GRB.Status.OPTIMAL:
     plt.legend()
     title_str='Trajectory achieved in '+str(t_max)+' seconds'
     plt.title(title_str)
-    plt.show()
-    write_text(px, py, pz,tot_time)
+    # plt.show()
+    write_text(px, py, pz,tot_time, file_name='path_planning.txt')
     print('Optmization time is ', m.Runtime)
 
 elif status != GRB.Status.INF_OR_UBD and status != GRB.Status.INFEASIBLE:

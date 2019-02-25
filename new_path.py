@@ -13,12 +13,14 @@ from write_to_text import *
 # ============================================================================
 'Drone dynamics data'
 g=9.81        # m/s^2
-V_max=118/3.6 # m/s
-U_max=5*g    # m/s^2
-delta_t=0.05   # sec
-t_max=25    # sec
-t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 D_sides=32   				 # [-]
+V_max=118/3.6 # m/s
+V_max *= math.cos(math.pi/D_sides)
+U_max=5*g    # m/s^2
+U_max *= math.cos(math.pi/D_sides)
+delta_t=0.05   # sec
+t_max=60    # sec
+t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
 alpha=10*math.pi/180		 # deg
 
@@ -31,8 +33,7 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
                        [ 0, math.inf,   0,     0, 0, 0, 0, 0, math.inf, 0, math.inf, 0]])
 
 # waypoints=waypoints.astype(int)
-t_wps=[0,2,5,6.5,9,13,15,15.5,17.5,19.5,20.5,25.0]
-
+t_wps=[0,2,6,12,18,24,32,34,42,48,52,60]
 n_waypoints=waypoints.shape[1]
 # ----------------------------------------------------------------------------
 # Define Variables to be used.
@@ -119,7 +120,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.cos(alpha) * uz[n] + math.sin(theta[d]) * math.cos(alpha) * ux[n] + math.sin(alpha) * uz[n],
+            math.cos(theta[d]) * math.cos(alpha) * ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -134,7 +135,7 @@ for n in range(t_steps):
             GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.cos(gamma) * vz[n] + math.sin(theta[d]) * math.cos(gamma) * vx[n] + math.sin(gamma)*vz[n],
+            math.cos(theta[d]) * math.cos(gamma) * vx[n] + math.sin(theta[d]) * math.cos(gamma) * vy[n] + math.sin(gamma)*vz[n],
             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -200,14 +201,15 @@ for n in [0,t_steps-1]:
 
 'Velocity constraint at waypoint'
 for i in range(n_gates):
+    j=int(t_wps[i]/delta_t)
     if velocity_cts[0,i]<math.inf:
-        m.addConstr(vx[n],
+        m.addConstr(vx[j],
                 GRB.EQUAL, velocity_cts[0,i],name='vx_%s'%(i))
     if velocity_cts[1,i]<math.inf:
-        m.addConstr(vy[n],
+        m.addConstr(vy[j],
             GRB.EQUAL, velocity_cts[1,i],name='vy_%s'%(i))
     if velocity_cts[2,i]<math.inf:
-        m.addConstr(vz[n],
+        m.addConstr(vz[j],
             GRB.EQUAL, velocity_cts[2,i],name='vz_%s'%(i))
 # ---------------------------------------------------
 # -------------------------
@@ -237,19 +239,28 @@ elif status == GRB.Status.OPTIMAL:
     pos_x = []
     pos_y = []
     pos_z = []
+    U_list=[]
+    ux_list=[]
     for n in range(t_steps):
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
         pos_z.append(pz[n].X)
+        U_list.append(U[n].X)
+        ux_list.append(math.sqrt(ux[n].X**2+uy[n].X**2+uz[n].X**2))
+        print(ux[n].X,uy[n].X,uz[n].X)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory')
+    ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory 1')
     ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
     plt.legend()
     title_str='Trajectory achieved in '+str(t_max)+' seconds'
     plt.title(title_str)
     plt.show()
-    file_name="new_coord.txt"
+    # plt.plot((np.array(U_list)-np.array(ux_list))/np.array(ux_list),label='Numerical')
+    # plt.plot(np.array(U_list),label='Numerical')
+    # plt.plot(ux_list,label='Analyitical')
+    # plt.show()
+    file_name="new_path.txt"
     write_text(px, py, pz,t_max,file_name)
     print('Optmization time is ', m.Runtime)
 

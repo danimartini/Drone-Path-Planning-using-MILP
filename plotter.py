@@ -1,4 +1,4 @@
-from path_planning import *
+from new_path import *
 plott = 1
 f_objective = m.objVal
 pos_x = []
