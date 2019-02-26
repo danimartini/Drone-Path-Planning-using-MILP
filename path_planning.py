@@ -58,7 +58,7 @@ V={}
 'Commodity variables for discretization'
 theta={}
 b={}
-ratio=0.
+ratio=0.0
 # ----------------------------------------------------------------------------
 # Create Objective FUction
 # ----------------------------------------------------------------------------)
@@ -127,36 +127,6 @@ for n in range(t_steps):
 
     m.addConstr(V[n],
         GRB.LESS_EQUAL, V_max, name='V_ctsmax1_%s' % (n))
-
-# 'Accelerations Constraint'
-# for n in range(t_steps):
-#     for d in range(D_sides):
-#         m.addConstr(
-#             math.cos(theta[d])*math.cos(-alpha)*ux[n]+math.sin(theta[d])*math.cos(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
-#             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
-#
-#         m.addConstr(
-#             math.cos(theta[d]) * math.cos(alpha)*ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
-#             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
-#
-#         m.addConstr(
-#             math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
-#             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
-#
-# 'Max Velocity Constraint'
-# for n in range(t_steps):
-#     for d in range(D_sides):
-#         m.addConstr(
-#             math.cos(theta[d])*math.cos(gamma)*vx[n]+math.sin(theta[d])*math.cos(gamma)*vy[n]+math.sin(-gamma)*vz[n],
-#             GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
-#
-#         m.addConstr(
-#             math.cos(theta[d]) * math.cos(gamma) * vz[n] + math.sin(theta[d]) * math.cos(gamma) * vx[n] + math.sin(gamma) * vz[n],
-#             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
-#
-#         m.addConstr(
-#             math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
-#             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):
@@ -357,11 +327,14 @@ elif status == GRB.Status.OPTIMAL:
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
         pos_z.append(pz[n].X)
-        # print(vx[n].X,vy[n].X,vz[n].X)
         for i in range(n_gates):
             if b[i,n].X == 1:
                 print('Waypoint %s at time %s'%(i,n*delta_t))
                 t_waypoints.append(n*delta_t)
+    file=open('timeswp.txt','w')
+    file.writelines(["%s\n" % item for item in t_waypoints])
+    file.close()
+
     tot_time= sum(n*delta_t*b[n_gates-1,n].X for n in range(t_steps))
     print(tot_time)
     fig = plt.figure()

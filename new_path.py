@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from write_to_text import *
-from path_planning import *
+# from path_planning import *
 # ============================================================================
 #
 # Optimization Model
@@ -35,7 +35,12 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
 
 # waypoints=waypoints.astype(int)
 # t_wps=[0,2,6,12,18,24,32,34,42,48,52,60]
-t_wps=t_waypoints
+crimefile = open('timeswp.txt', 'r')
+t_wps = []
+for line in crimefile:
+    line=line[:-1]
+    t_wps.append(float(line))
+print(t_wps)
 n_waypoints=waypoints.shape[1]
 # ----------------------------------------------------------------------------
 # Define Variables to be used.
@@ -123,35 +128,6 @@ for n in range(t_steps):
     m.addConstr(V[n],
                 GRB.LESS_EQUAL, V_max, name='V_ctsmax1_%s' % (n))
 
-# 'Accelerations Constraint'
-# for n in range(t_steps):
-#     for d in range(D_sides):
-#         m.addConstr(
-#             math.cos(theta[d])*math.cos(-alpha)*ux[n]+math.sin(theta[d])*math.cos(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
-#             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
-#
-#         m.addConstr(
-#             math.cos(theta[d]) * math.cos(alpha) * ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
-#             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
-#
-#         m.addConstr(
-#             math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
-#             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
-#
-# 'Max Velocity Constraint'
-# for n in range(t_steps):
-#     for d in range(D_sides):
-#         m.addConstr(
-#             math.cos(theta[d])*math.cos(-gamma)*vx[n]+math.sin(theta[d])*math.cos(-gamma)*vy[n]+math.sin(-gamma)*vz[n],
-#             GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
-#
-#         m.addConstr(
-#             math.cos(theta[d]) * math.cos(gamma) * vx[n] + math.sin(theta[d]) * math.cos(gamma) * vy[n] + math.sin(gamma)*vz[n],
-#             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
-#
-#         m.addConstr(
-#             math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
-#             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):
