@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from write_to_text import *
+from path_planning import *
 # ============================================================================
 #
 # Optimization Model
@@ -33,7 +34,8 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
                        [ 0, math.inf,   0,     0, 0, 0, 0, 0, math.inf, 0, math.inf, 0]])
 
 # waypoints=waypoints.astype(int)
-t_wps=[0,2,6,12,18,24,32,34,42,48,52,60]
+# t_wps=[0,2,6,12,18,24,32,34,42,48,52,60]
+t_wps=t_waypoints
 n_waypoints=waypoints.shape[1]
 # ----------------------------------------------------------------------------
 # Define Variables to be used.
@@ -143,30 +145,30 @@ for n in range(t_steps):
             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 
 'Integration scheme Constraint'
+'Integration scheme Constraint'
 for n in range(1,t_steps):
-    for d in range(D_sides):
-        'Position'
-        m.addConstr(
-            px[n-1]+vx[n-1]*delta_t+1/2*delta_t**2*ux[n-1],
-            GRB.EQUAL,px[n], name='Px_cts_%s_%s' % (n,d))
+    'Position'
+    m.addConstr(
+        px[n-1]+vx[n-1]*delta_t+1/2*delta_t**2*ux[n-1],
+        GRB.EQUAL,px[n], name='Px_cts_%s' % (n))
 
-        m.addConstr(
-            py[n-1]+vy[n-1]*delta_t+1/2*delta_t**2*uy[n-1],
-            GRB.EQUAL,py[n], name='Py_cts_%s_%s' % (n,d))
-        m.addConstr(
-            pz[n-1]+vz[n-1]*delta_t+1/2*delta_t**2*uz[n-1],
-            GRB.EQUAL,pz[n], name='Pz_cts_%s_%s' % (n,d))
+    m.addConstr(
+        py[n-1]+vy[n-1]*delta_t+1/2*delta_t**2*uy[n-1],
+        GRB.EQUAL,py[n], name='Py_cts_%s' % (n))
+    m.addConstr(
+        pz[n-1]+vz[n-1]*delta_t+1/2*delta_t**2*uz[n-1],
+        GRB.EQUAL,pz[n], name='Pz_cts_%s' % (n))
 
-        'Velocity'
-        m.addConstr(
-            vx[n-1]+delta_t*ux[n-1],
-            GRB.EQUAL,vx[n], name='Vx_cts_%s_%s' % (n,d))
-        m.addConstr(
-            vy[n-1]+delta_t*uy[n-1],
-            GRB.EQUAL,vy[n], name='Vy_cts_%s_%s' % (n,d))
-        m.addConstr(
-            vz[n-1]+delta_t*uz[n-1],
-            GRB.EQUAL,vz[n], name='Vz_cts_%s_%s' % (n,d))
+    'Velocity'
+    m.addConstr(
+        vx[n-1]+delta_t*ux[n-1],
+        GRB.EQUAL,vx[n], name='Vx_cts_%s' % (n))
+    m.addConstr(
+        vy[n-1]+delta_t*uy[n-1],
+        GRB.EQUAL,vy[n], name='Vy_cts_%s' % (n))
+    m.addConstr(
+        vz[n-1]+delta_t*uz[n-1],
+        GRB.EQUAL,vz[n], name='Vz_cts_%s' % (n))
 
 
 'Waypoint Constraint'
@@ -248,10 +250,10 @@ elif status == GRB.Status.OPTIMAL:
         U_list.append(U[n].X)
         ux_list.append(math.sqrt(ux[n].X**2+uy[n].X**2+uz[n].X**2))
         print(ux[n].X,uy[n].X,uz[n].X)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
     ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory 1')
-    ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
+    # ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
     plt.legend()
     title_str='Trajectory achieved in '+str(t_max)+' seconds'
     plt.title(title_str)

@@ -152,29 +152,28 @@ for n in range(t_steps):
 
 'Integration scheme Constraint'
 for n in range(1,t_steps):
-    for d in range(D_sides):
-        'Position'
-        m.addConstr(
-            px[n-1]+vx[n-1]*delta_t+1/2*delta_t**2*ux[n-1],
-            GRB.EQUAL,px[n], name='Px_cts_%s_%s' % (n,d))
+    'Position'
+    m.addConstr(
+        px[n-1]+vx[n-1]*delta_t+1/2*delta_t**2*ux[n-1],
+        GRB.EQUAL,px[n], name='Px_cts_%s' % (n))
 
-        m.addConstr(
-            py[n-1]+vy[n-1]*delta_t+1/2*delta_t**2*uy[n-1],
-            GRB.EQUAL,py[n], name='Py_cts_%s_%s' % (n,d))
-        m.addConstr(
-            pz[n-1]+vz[n-1]*delta_t+1/2*delta_t**2*uz[n-1],
-            GRB.EQUAL,pz[n], name='Pz_cts_%s_%s' % (n,d))
+    m.addConstr(
+        py[n-1]+vy[n-1]*delta_t+1/2*delta_t**2*uy[n-1],
+        GRB.EQUAL,py[n], name='Py_cts_%s' % (n))
+    m.addConstr(
+        pz[n-1]+vz[n-1]*delta_t+1/2*delta_t**2*uz[n-1],
+        GRB.EQUAL,pz[n], name='Pz_cts_%s' % (n))
 
-        'Velocity'
-        m.addConstr(
-            vx[n-1]+delta_t*ux[n-1],
-            GRB.EQUAL,vx[n], name='Vx_cts_%s_%s' % (n,d))
-        m.addConstr(
-            vy[n-1]+delta_t*uy[n-1],
-            GRB.EQUAL,vy[n], name='Vy_cts_%s_%s' % (n,d))
-        m.addConstr(
-            vz[n-1]+delta_t*uz[n-1],
-            GRB.EQUAL,vz[n], name='Vz_cts_%s_%s' % (n,d))
+    'Velocity'
+    m.addConstr(
+        vx[n-1]+delta_t*ux[n-1],
+        GRB.EQUAL,vx[n], name='Vx_cts_%s' % (n))
+    m.addConstr(
+        vy[n-1]+delta_t*uy[n-1],
+        GRB.EQUAL,vy[n], name='Vy_cts_%s' % (n))
+    m.addConstr(
+        vz[n-1]+delta_t*uz[n-1],
+        GRB.EQUAL,vz[n], name='Vz_cts_%s' % (n))
 
 
 'Waypoint Constraint'
@@ -227,11 +226,11 @@ for i in range(1,n_gates):
 #
     m.addConstr(
         quicksum(delta_t*n*b[i,n] for n in range(t_steps)),
-        GRB.GREATER_EQUAL, quicksum(delta_t*n*b[i-1,n] for n in range(t_steps)), name='Mwp_%s' % (i))
+        GRB.GREATER_EQUAL, quicksum(delta_t*n*b[i-1,n] for n in range(t_steps)), name='Maxt_%s' % (i))
 
 m.addConstr(
         quicksum(delta_t*n*b[n_gates-1,n] for n in range(t_steps)),
-        GRB.LESS_EQUAL, Tf, name='Maxt_%s' % (n_gates-1))
+        GRB.LESS_EQUAL, Tf, name='Maxts_%s' % (n_gates-1))
 
 'Initial acceleration Constraint'
 for n in [0,t_steps-1]:
@@ -244,16 +243,6 @@ for n in [0,t_steps-1]:
     m.addConstr(
             uz[n],
             GRB.EQUAL, 0,name='uz_%s'%(n))
-
-    # m.addConstr(
-    #     vx[n],
-    #     GRB.EQUAL, 0, name='vx_%s' % (n))
-    # m.addConstr(
-    #     vy[n],
-    #     GRB.EQUAL, 0, name='vy_%s' % (n))
-    # m.addConstr(
-    #     vz[n],
-    #     GRB.EQUAL, 0, name='vz_%s' % (n))
 
 
 'Velocity constaint at waypoint'
