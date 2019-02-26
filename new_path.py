@@ -15,11 +15,11 @@ from write_to_text import *
 'Drone dynamics data'
 g=9.81        # m/s^2
 D_sides=32   				 # [-]
-V_max=118/3.6 # m/s
+V_max=3.6 # m/s
 V_max *= math.cos(math.pi/D_sides)
-U_max=5*g    # m/s^2
+U_max=0.5*g    # m/s^2
 U_max *= math.cos(math.pi/D_sides)
-delta_t=0.05   # sec
+delta_t=1  # sec
 t_max=60    # sec
 t_steps=int(round((t_max+delta_t)/delta_t,1)) 	 # [-]
 gamma=10*math.pi/180    	 # deg
@@ -79,8 +79,8 @@ for n in range(t_steps):
                     vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                     name="U_%s" % (n))
 
-    V[n] = m.addVar(obj=0,
-                    vtype=GRB.CONTINUOUS, lb=0,
+    V[n] = m.addVar(obj=0.001,
+                    vtype=GRB.CONTINUOUS, lb=-GRB.INFINITY,
                     name="V_%s" % (n))
     ux[n] = m.addVar(obj=0,
                             vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
@@ -120,7 +120,7 @@ m.setObjective(m.getObjective(), GRB.MINIMIZE)  # The objective is to maximize r
 # Create Constraints
 # ----------------------------------------------------------------------------
 
-'Max acceleration constraint'
+'Max acceleration and velocity constraint'
 for n in range(t_steps):
     m.addConstr(U[n],
         GRB.LESS_EQUAL, U_max, name='U_ctsmax1_%s' % (n))
@@ -133,15 +133,15 @@ for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
             math.cos(theta[d])*math.sin(-alpha)*ux[n]+math.sin(theta[d])*math.sin(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
-            GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
+            GRB.LESS_EQUAL, U[n], name='U_cts1_%s_%s' % (n,d))
 
         m.addConstr(
             math.cos(theta[d]) * math.sin(alpha)*uz[n] + math.sin(theta[d]) * math.sin(alpha) * ux[n] + math.sin(alpha) * uz[n],
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
-            GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
+            math.cos(theta[d])*uy[n]+math.sin(theta[d])*uz[n],
+            GRB.LESS_EQUAL, U[n], name='U_cts3_%s_%s' % (n,d))
 
 'Max Velocity Constraint'
 for n in range(t_steps):
@@ -158,7 +158,6 @@ for n in range(t_steps):
             math.cos(theta[d])*vy[n]+math.sin(theta[d])*vz[n],
             GRB.LESS_EQUAL,V[n], name='V_cts3_%s_%s' % (n,d))
 
-'Integration scheme Constraint'
 'Integration scheme Constraint'
 for n in range(1,t_steps):
     'Position'
@@ -266,12 +265,12 @@ elif status == GRB.Status.OPTIMAL:
         print(ux[n].X,uy[n].X,uz[n].X)
     # fig = plt.figure()
     # ax = fig.add_subplot(111, projection='3d')
-    ax.plot(pos_x, pos_y, pos_z,label='dt=0.05')
+#    ax.plot(pos_x, pos_y, pos_z,label='dt=0.05')
     # ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
-    plt.legend()
-    title_str='Trajectory achieved in '+str(t_max)+' seconds'
-    plt.title(title_str)
-    plt.show()
+#    plt.legend()
+#    title_str='Trajectory achieved in '+str(t_max)+' seconds'
+#    plt.title(title_str)
+#    plt.show()
     # plt.plot((np.array(U_list)-np.array(ux_list))/np.array(ux_list),label='Numerical')
     # plt.plot(np.array(U_list),label='Numerical')
     # plt.plot(ux_list,label='Analyitical')

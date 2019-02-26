@@ -12,7 +12,7 @@ from write_to_text import *
 'Drone dynamics data'
 g=9.81        # m/s^2
 V_max=118/3.6 # m/s
-D_sides=8     # [-]
+D_sides=32    # [-]
 V_max *= math.cos(math.pi/D_sides)
 U_max=5*g    # m/s^2
 U_max *= math.cos(math.pi/D_sides)
@@ -69,7 +69,7 @@ for n in range(t_steps):
     U[n]= m.addVar(obj=1-ratio,
                     vtype=GRB.CONTINUOUS,lb=0,
                     name="U_%s" % (n))
-    V[n] = m.addVar(obj=0,
+    V[n] = m.addVar(obj=1,
                     vtype=GRB.CONTINUOUS, lb=0,
                     name="V_%s" % (n))
     ux[n] = m.addVar(obj=0,
@@ -139,8 +139,9 @@ for n in range(t_steps):
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
+            math.cos(theta[d])*uy[n]+math.sin(theta[d])*uz[n],
             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
+
 
 'Max Velocity Constraint'
 for n in range(t_steps):
