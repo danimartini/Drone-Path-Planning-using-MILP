@@ -329,7 +329,7 @@ elif status == GRB.Status.OPTIMAL:
     print(tot_time)
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory')
+    ax.plot(pos_x, pos_y, pos_z,label='dt=2')
     ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
     plt.legend()
     title_str='Trajectory achieved in '+str(t_max)+' seconds'

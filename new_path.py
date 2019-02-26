@@ -194,7 +194,7 @@ for n in [0,t_steps-1]:
             ux[n],
             GRB.EQUAL, 0,name='ux_%s'%(n))
     m.addConstr(
-            ux[n],
+            uy[n],
             GRB.EQUAL, 0,name='uy_%s'%(n))
     m.addConstr(
             uz[n],
@@ -252,7 +252,7 @@ elif status == GRB.Status.OPTIMAL:
         print(ux[n].X,uy[n].X,uz[n].X)
     # fig = plt.figure()
     # ax = fig.add_subplot(111, projection='3d')
-    ax.plot(pos_x, pos_y, pos_z,label='Drone Trajectory 1')
+    ax.plot(pos_x, pos_y, pos_z,label='dt=0.05')
     # ax.scatter(waypoints[0,:], waypoints[1,:], waypoints[2,:], zdir='z', s=80, c='red', depthshade=True,label='Waypoints')
     plt.legend()
     title_str='Trajectory achieved in '+str(t_max)+' seconds'
