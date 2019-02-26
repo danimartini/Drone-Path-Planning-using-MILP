@@ -58,6 +58,8 @@ uz = {}
 
 'Acceleration'
 U={}
+'Velocity'
+V={}
 'Commodity variables for discretization'
 theta={}
 b={}
@@ -71,6 +73,10 @@ for n in range(t_steps):
     U[n]= m.addVar(obj=1,
                     vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                     name="U_%s" % (n))
+
+    V[n] = m.addVar(obj=0,
+                    vtype=GRB.CONTINUOUS, lb=0,
+                    name="V_%s" % (n))
     ux[n] = m.addVar(obj=0,
                             vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
                             name="ux_%s" % (n))
@@ -114,15 +120,47 @@ for n in range(t_steps):
     m.addConstr(U[n],
         GRB.LESS_EQUAL, U_max, name='U_ctsmax1_%s' % (n))
 
+    m.addConstr(V[n],
+                GRB.LESS_EQUAL, V_max, name='V_ctsmax1_%s' % (n))
+
+# 'Accelerations Constraint'
+# for n in range(t_steps):
+#     for d in range(D_sides):
+#         m.addConstr(
+#             math.cos(theta[d])*math.cos(-alpha)*ux[n]+math.sin(theta[d])*math.cos(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
+#             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
+#
+#         m.addConstr(
+#             math.cos(theta[d]) * math.cos(alpha) * ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
+#             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
+#
+#         m.addConstr(
+#             math.cos(theta[d])*ux[n]+math.sin(theta[d])*uy[n],
+#             GRB.LESS_EQUAL,U[n], name='U_cts3_%s_%s' % (n,d))
+#
+# 'Max Velocity Constraint'
+# for n in range(t_steps):
+#     for d in range(D_sides):
+#         m.addConstr(
+#             math.cos(theta[d])*math.cos(-gamma)*vx[n]+math.sin(theta[d])*math.cos(-gamma)*vy[n]+math.sin(-gamma)*vz[n],
+#             GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
+#
+#         m.addConstr(
+#             math.cos(theta[d]) * math.cos(gamma) * vx[n] + math.sin(theta[d]) * math.cos(gamma) * vy[n] + math.sin(gamma)*vz[n],
+#             GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
+#
+#         m.addConstr(
+#             math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
+#             GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
-            math.cos(theta[d])*math.cos(-alpha)*ux[n]+math.sin(theta[d])*math.cos(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
+            math.cos(theta[d])*math.sin(-alpha)*ux[n]+math.sin(theta[d])*math.sin(-alpha)*uy[n]+math.sin(-alpha)*uz[n],
             GRB.LESS_EQUAL,U[n], name='U_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.cos(alpha) * ux[n] + math.sin(theta[d]) * math.cos(alpha) * uy[n] + math.sin(alpha) * uz[n],
+            math.cos(theta[d]) * math.sin(alpha)*uz[n] + math.sin(theta[d]) * math.sin(alpha) * ux[n] + math.sin(alpha) * uz[n],
             GRB.LESS_EQUAL, U[n], name='U_cts2_%s_%s' % (n, d))
 
         m.addConstr(
@@ -133,16 +171,16 @@ for n in range(t_steps):
 for n in range(t_steps):
     for d in range(D_sides):
         m.addConstr(
-            math.cos(theta[d])*math.cos(-gamma)*vx[n]+math.sin(theta[d])*math.cos(-gamma)*vy[n]+math.sin(-gamma)*vz[n],
-            GRB.LESS_EQUAL,V_max, name='V_cts1_%s_%s' % (n,d))
+            math.cos(theta[d])*math.sin(gamma)*vx[n]+math.sin(theta[d])*math.sin(gamma)*vy[n]+math.sin(-gamma)*vz[n],
+            GRB.LESS_EQUAL,V[n], name='V_cts1_%s_%s' % (n,d))
 
         m.addConstr(
-            math.cos(theta[d]) * math.cos(gamma) * vx[n] + math.sin(theta[d]) * math.cos(gamma) * vy[n] + math.sin(gamma)*vz[n],
-            GRB.LESS_EQUAL, V_max, name='V_cts2_%s_%s' % (n, d))
+            math.cos(theta[d]) * math.sin(gamma) * vz[n] + math.sin(theta[d]) * math.sin(gamma) * vx[n] + math.sin(gamma) * vz[n],
+            GRB.LESS_EQUAL, V[n], name='V_cts2_%s_%s' % (n, d))
 
         m.addConstr(
-            math.cos(theta[d])*vx[n]+math.sin(theta[d])*vy[n],
-            GRB.LESS_EQUAL,V_max, name='V_cts3_%s_%s' % (n,d))
+            math.cos(theta[d])*vy[n]+math.sin(theta[d])*vz[n],
+            GRB.LESS_EQUAL,V[n], name='V_cts3_%s_%s' % (n,d))
 
 'Integration scheme Constraint'
 'Integration scheme Constraint'
