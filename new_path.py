@@ -33,8 +33,6 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
                        [0, math.inf, math.inf, 0, math.inf, math.inf, math.inf, math.inf, math.inf, 0, math.inf, 0],
                        [ 0, math.inf,   0,     0, 0, 0, 0, 0, math.inf, 0, math.inf, 0]])
 
-# waypoints=waypoints.astype(int)
-# t_wps=[0,2,6,12,18,24,32,34,42,48,52,60]
 crimefile = open('timeswp.txt', 'r')
 t_wps = []
 for line in crimefile:
@@ -76,11 +74,11 @@ for d in range(D_sides):
 
 for n in range(t_steps):
     U[n]= m.addVar(obj=1,
-                    vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
+                    vtype=GRB.CONTINUOUS,lb=0,ub=U_max,
                     name="U_%s" % (n))
 
     V[n] = m.addVar(obj=0.001,
-                    vtype=GRB.CONTINUOUS, lb=-GRB.INFINITY,
+                    vtype=GRB.CONTINUOUS, lb=0,ub=V_max,
                     name="V_%s" % (n))
     ux[n] = m.addVar(obj=0,
                             vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
@@ -119,15 +117,6 @@ m.setObjective(m.getObjective(), GRB.MINIMIZE)  # The objective is to maximize r
 # ----------------------------------------------------------------------------
 # Create Constraints
 # ----------------------------------------------------------------------------
-
-'Max acceleration and velocity constraint'
-for n in range(t_steps):
-    m.addConstr(U[n],
-        GRB.LESS_EQUAL, U_max, name='U_ctsmax1_%s' % (n))
-
-    m.addConstr(V[n],
-                GRB.LESS_EQUAL, V_max, name='V_ctsmax1_%s' % (n))
-
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):

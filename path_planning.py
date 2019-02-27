@@ -30,7 +30,6 @@ velocity_cts=np.array([[0, math.inf,   0,   math.inf, 0, 0, 0, 0, math.inf, math
                        [0, math.inf, math.inf, 0, math.inf, math.inf, math.inf, math.inf, math.inf, 0, math.inf, 0],
                        [ 0, math.inf,   0,     0, 0, 0, 0, 0, math.inf, 0, math.inf, 0]])
 
-# waypoints=waypoints.astype(int)
 n_waypoints=waypoints.shape[1]
 # ----------------------------------------------------------------------------
 # Define Variables to be used.
@@ -67,10 +66,10 @@ for d in range(D_sides+1):
 
 for n in range(t_steps):
     U[n]= m.addVar(obj=1-ratio,
-                    vtype=GRB.CONTINUOUS,lb=0,
+                    vtype=GRB.CONTINUOUS,lb=0,ub=U_max,
                     name="U_%s" % (n))
     V[n] = m.addVar(obj=1,
-                    vtype=GRB.CONTINUOUS, lb=0,
+                    vtype=GRB.CONTINUOUS, lb=0,ub=V_max,
                     name="V_%s" % (n))
     ux[n] = m.addVar(obj=0,
                             vtype=GRB.CONTINUOUS,lb=-GRB.INFINITY,
@@ -119,14 +118,6 @@ m.setObjective(m.getObjective(), GRB.MINIMIZE)  # The objective is to maximize r
 # ----------------------------------------------------------------------------
 # Create Constraints
 # ----------------------------------------------------------------------------
-
-'Max acceleration constraint'
-for n in range(t_steps):
-    m.addConstr(U[n],
-        GRB.LESS_EQUAL, U_max, name='U_ctsmax1_%s' % (n))
-
-    m.addConstr(V[n],
-        GRB.LESS_EQUAL, V_max, name='V_ctsmax1_%s' % (n))
 'Accelerations Constraint'
 for n in range(t_steps):
     for d in range(D_sides):
@@ -196,9 +187,8 @@ m.addConstr(
     pz[0],
     GRB.EQUAL, waypoints[2,0],name='Wpz')
 
-# m.addConstr(b[0,0],
-#         GRB.EQUAL, 1,name='Mwp_%s' % (i))
-#
+m.addConstr(b[0,0],
+        GRB.EQUAL, 1,name='Mwp_%s' % (i))
 M=10e6
 for n in range(t_steps):
     for i in range(1,n_gates):
@@ -323,7 +313,7 @@ elif status == GRB.Status.OPTIMAL:
     pos_x = []
     pos_y = []
     pos_z = []
-    t_waypoints=[0]
+    t_waypoints=[]
     for n in range(t_steps):
         pos_x.append(px[n].X)
         pos_y.append(py[n].X)
